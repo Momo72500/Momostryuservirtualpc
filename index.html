@@ -3,24 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows 11 Simulation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Run OS in Browser</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        #emulator {
+            width: 80%;
+            height: 80%;
+            border: 1px solid #000;
+        }
+    </style>
 </head>
 <body>
-    <div id="desktop">
-        <div id="taskbar">
-            <div id="start-button">Start</div>
-            <div id="taskbar-icons">
-                <!-- Add taskbar icons here -->
-            </div>
-        </div>
-        <div id="start-menu" class="hidden">
-            <div id="start-menu-content">
-                <!-- Add start menu content here -->
-            </div>
-        </div>
-    </div>
+    <div id="emulator"></div>
 
-    <script src="script.js"></script>
+    <script src="libv86.js"></script>
+    <script>
+        const emulator = new V86Starter({
+            wasm_path: "v86.wasm",
+            memory_size: 128 * 1024 * 1024,
+            vga_memory_size: 8 * 1024 * 1024,
+            screen_container: document.getElementById("emulator"),
+            bios: { url: "bios.bin" },
+            vga_bios: { url: "vgabios.bin" },
+            cdrom: { url: "tinycore.iso" }
+        });
+    </script>
 </body>
 </html>
