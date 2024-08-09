@@ -3,71 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-Based Virtual Environment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #terminal {
-            width: 80%;
-            height: 80%;
-            background-color: #000;
-            color: #0f0;
-            padding: 10px;
-            overflow-y: auto;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        #input {
-            width: 100%;
-            border: none;
-            background: none;
-            color: #0f0;
-            font-family: monospace;
-            font-size: 16px;
-            outline: none;
-        }
-    </style>
+    <title>Windows 11 Simulation</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="terminal">
-        <div id="output"></div>
-        <input type="text" id="input" autofocus>
+    <div id="desktop">
+        <div id="taskbar">
+            <div id="start-button">Start</div>
+            <div id="taskbar-icons">
+                <!-- Add taskbar icons here -->
+            </div>
+        </div>
+        <div id="start-menu" class="hidden">
+            <div id="start-menu-content">
+                <!-- Add start menu content here -->
+            </div>
+        </div>
     </div>
 
-    <script>
-        const terminal = document.getElementById('terminal');
-        const output = document.getElementById('output');
-        const input = document.getElementById('input');
-
-        input.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const command = input.value;
-                input.value = '';
-                output.innerHTML += `<div>> ${command}</div>`;
-                executeCommand(command);
-                terminal.scrollTop = terminal.scrollHeight;
-            }
-        });
-
-        function executeCommand(command) {
-            // Simple command execution simulation
-            if (command === 'help') {
-                output.innerHTML += '<div>Available commands: help, echo, clear</div>';
-            } else if (command.startsWith('echo ')) {
-                output.innerHTML += `<div>${command.slice(5)}</div>`;
-            } else if (command === 'clear') {
-                output.innerHTML = '';
-            } else {
-                output.innerHTML += `<div>Unknown command: ${command}</div>`;
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
